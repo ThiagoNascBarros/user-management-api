@@ -1,7 +1,7 @@
 # Documentação da API REST - Gerenciamento de Usuários
 
 ## Descrição
-Esta API foi desenvolvida com Spring Boot e oferece funcionalidades para gerenciamento de usuários, incluindo operações CRUD. A API permite criar, ler, atualizar e excluir usuários, com dados de **nome**, **telefone**, **email** e **senha**. Para garantir a segurança, a autenticação básica (Basic Auth) foi implementada apenas no endpoint de criação de usuários (POST), e as senhas dos usuários são armazenadas de forma segura, utilizando criptografia bcrypt. **A senha nunca é retornada nas respostas da API.**
+Esta API foi desenvolvida com Spring Boot e oferece funcionalidades para gerenciamento de usuários, incluindo operações CRUD. A API permite criar, ler, atualizar e excluir usuários, com dados de **nome**, **telefone**, **email** e **senha**. Para garantir a segurança, a autenticação básica (Basic Auth) foi implementada apenas no endpoint de criação de usuários (POST), e as senhas dos usuários são armazenadas de forma segura, utilizando criptografia bcrypt.
 
 Além disso, a API utiliza a validação dos campos de entrada para garantir que os dados estejam no formato correto.
 ## Endpoints
@@ -32,10 +32,10 @@ Cria um novo usuário.
   "id": 1,
   "nome": "João Silva",
   "telefone": "1234567890",
-  "email": "joao.silva@email.com"
+  "email": "joao.silva@email.com",
+  "senha": "senha criptografada"
 }
 ```
-**Nota**: A senha nunca é retornada nas respostas para garantir a segurança.
 
 ### 2. **GET /usuario/{id}**
 Obtém os dados de um usuário específico.
@@ -54,7 +54,8 @@ Obtém os dados de um usuário específico.
   "id": 1,
   "nome": "João Silva",
   "telefone": "1234567890",
-  "email": "joao.silva@email.com"
+  "email": "joao.silva@email.com",
+  "senha": "senha criptografada"
 }
 ```
 
@@ -83,7 +84,8 @@ Atualiza os dados de um usuário específico.
   "id": 1,
   "nome": "João Silva Atualizado",
   "telefone": "0987654321",
-  "email": "joao.silva.novo@email.com"
+  "email": "joao.silva.novo@email.com",
+  "senha": "senha criptografada"
 }
 ```
 
