@@ -7,6 +7,7 @@ import java.util.Map;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,13 @@ public class UsuarioController {
 	
 	@Autowired
 	UsuarioRepository repo;
-	
-	@GetMapping
+	private final PasswordEncoder enconder;
+
+    public UsuarioController(PasswordEncoder enconder) {
+        this.enconder = enconder;
+    }
+
+    @GetMapping
 	public List<Usuario> getAll(){
 		List<Usuario> user = repo.findAll();
 		return user;
@@ -39,6 +45,7 @@ public class UsuarioController {
 		}
 
 		Usuario user = new Usuario(dto);
+		user.setSenha(enconder.encode(user.getSenha()));
 		repo.save(user);
 		Map<String, String> response = new HashMap<>();
 		response.put("message", "Usuário criado com sucesso.");
