@@ -1,4 +1,4 @@
-package br.com.seduc.users;
+package br.com.seduc.users.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,10 +29,11 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/usuario").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/usuario/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuario").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/usuario/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/usuario/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/usuario/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/usuario/**").authenticated()
+                        .requestMatchers(HttpMethod.GET,"/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 )
                 .httpBasic(httpBasic -> httpBasic
                         .authenticationEntryPoint(customAuthenticationEntryPoint));

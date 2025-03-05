@@ -1,6 +1,5 @@
-package br.com.seduc.users;
+package br.com.seduc.users.security;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.AuthenticationException;
